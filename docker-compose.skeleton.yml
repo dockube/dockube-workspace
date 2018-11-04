@@ -1,0 +1,48 @@
+version: '2'   # IT MUST version 2 for support "ip_range"
+
+#================================================================================================
+# NETWORK SETUP
+#================================================================================================
+networks:
+  dockube-net:
+    driver: ${NETWORKS_DRIVER}
+    ipam:
+      config:
+        - subnet: 172.212.0.0/16      # 65534 Hosts / Net
+          ip_range: 172.212.5.0/24
+          gateway: 172.212.5.254
+
+#================================================================================================
+# VOLUME SETUP
+#================================================================================================
+volumes:
+  dockube-workspace:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+#================================================================================================
+# WORKSPACE
+#================================================================================================
+  dockube-workspace:
+    restart: unless-stopped
+    build:
+      context: .
+      args:
+        - INSTALL_ANSIBLE=${WORKSPACE_INSTALL_ANSIBLE}
+        - INSTALL_GOLANG=${WORKSPACE_INSTALL_GOLANG}
+    container_name: dockube_workspace
+    hostname: dockube-workspace
+    #domainname: dockube-workspace
+    ports:
+      - "${WORKSPACE_PORT}:22/tcp"
+    ### DO NOT USE FOR "docker registry / build images" ###
+    # volumes:
+    #   - /etc/localtime:/etc/localtime:ro
+    #   - /var/run/docker.sock:/var/run/docker.sock
+    #   - ${WORKSPACE}:/opt
+    environment:
+      - UBUNTU_VERSION=${UBUNTU_VERSION}
+    privileged: true
+    networks:
+      dockube-net:
+        ipv4_address: 172.200.0.14
