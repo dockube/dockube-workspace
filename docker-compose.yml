@@ -28,7 +28,7 @@ services:
     build:
       context: .
       args:
-        - INSTALL_ANSIBLE=true
+        - INSTALL_ANSIBLE=false
         - INSTALL_GOLANG=true
     container_name: dockube_workspace
     hostname: dockube-workspace
