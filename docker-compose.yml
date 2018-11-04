@@ -41,7 +41,7 @@ services:
     # - /var/run/docker.sock:/var/run/docker.sock
       - ./workspace:/opt
     environment:
-      - UBUNTU_VERSION=${UBUNTU_VERSION}
+      - UBUNTU_VERSION=16.04
     privileged: true
     networks:
       dockube-net:
