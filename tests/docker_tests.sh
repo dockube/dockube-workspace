@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 DOCKER_IMAGE="dockube/dockube-workspace"
-DOCKER_TAG="golang"
+DOCKER_TAG="ansible"
 
 #### Halt script on error
 set -e

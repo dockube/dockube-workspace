@@ -68,7 +68,7 @@ CMD ["/usr/sbin/sshd", "-D"]
 #  INSTALL ANSIBLE
 # ================================================================================================
 USER root
-ARG INSTALL_ANSIBLE=false
+ARG INSTALL_ANSIBLE=true
 RUN if [ "${INSTALL_ANSIBLE}" = true ]; then \
       /bin/sh /opt/install_ansible.sh \
     ;fi
@@ -77,7 +77,7 @@ RUN if [ "${INSTALL_ANSIBLE}" = true ]; then \
 #  INSTALL GOLANG
 # ================================================================================================
 USER root
-ARG INSTALL_GOLANG=true
+ARG INSTALL_GOLANG=false
 RUN if [ "${INSTALL_GOLANG}" = true ]; then \
       /bin/sh /opt/install_golang.sh \
     ;fi
