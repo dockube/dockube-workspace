@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 DOCKER_IMAGE="dockube/dockube-workspace"
-DOCKER_TAG="golang"
+DOCKER_TAG="all-feature"
 
 #### Halt script on error
 set -e
