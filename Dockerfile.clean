@@ -12,9 +12,6 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update; sync
 RUN apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install \
-      build-essential \
-      ca-certificates \
-      gcc \
       git \
       bash \
       curl \
@@ -26,13 +23,7 @@ RUN apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-
       unzip \
       net-tools \
       vim-tiny \
-      nano \
-      libpq-dev \
-      make \
-      python-pip \
-      python2.7 \
-      python2.7-dev \
-      ssh
+      nano
 
 COPY rootfs/ /
 
